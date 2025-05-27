@@ -4,7 +4,7 @@ include 'admin/config/koneksi.php';
 if (isset($_POST['save'])) {
 	$name = $_POST['name'];
 	$email = $_POST['email'];
-	$subject = $_POST['subject'];
+	$subject = $_POST['subject']; 
 	$message = $_POST['message'];
 	$query = mysqli_query($config, "INSERT INTO contacts (name, email, subject, message) VALUES ('$name', '$email', '$subject', '$message')");
 
@@ -16,6 +16,9 @@ if (isset($_POST['save'])) {
 }
 
 
+// $querycategories = mysqli_query($config, "SELECT * FROM categories ORDER BY id DESC");
+// $rowcategories = mysqli_fetch_all($querycategories, MYSQLI_ASSOC);
+
 
 
 
@@ -25,6 +28,8 @@ if (isset($_POST['save'])) {
 
 //query profile
 $queryprofile = mysqli_query($config, "SELECT * FROM profile ORDER BY id DESC");
+$queryabout = mysqli_query($config, "SELECT * FROM about ORDER BY id DESC");
+$rowabout= mysqli_fetch_assoc($queryabout);
 $rowprofile = mysqli_fetch_assoc($queryprofile);
 
 
@@ -63,7 +68,7 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Clyde<span>.</span></a>
+			<a class="navbar-brand" href="index.html">HAMZAH<span>.</span></a>
 			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
@@ -195,11 +200,11 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p> -->
 
 								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Name:</span> <span>Clyde Nowitzki</span></li>
-									<li class="d-flex"><span>Date of birth:</span> <span>January 01, 1990</span></li>
-									<li class="d-flex"><span>Address:</span> <span>San Francisco CA 97987 USA</span></li>
+									<li class="d-flex"><span>Name:</span> <span><?php echo isset($rowabout['name']) ? $rowabout['name'] : '' ?></span></li>
+									<li class="d-flex"><span>Date of birth:</span> <span><?php echo isset($rowabout['date']) ? $rowabout['date'] : '' ?></span></li>
+									<li class="d-flex"><span>Address:</span> <span><?php echo isset($rowabout['address']) ? $rowabout['address'] : '' ?></span></li>
 									<li class="d-flex"><span>Zip code:</span> <span>1000</span></li>
-									<li class="d-flex"><span>Email:</span> <span>cydenowitzki@gmail.com</span></li>
+									<li class="d-flex"><span>Email:</span> <span><?php echo isset($rowabout['email']) ? $rowabout['email'] : '' ?></span></li>
 									<li class="d-flex"><span>Phone: </span> <span>+1-2234-5678-9-0</span></li>
 								</ul>
 							</div>

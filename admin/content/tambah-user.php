@@ -38,7 +38,7 @@ if (isset($_POST['edit'])) {
     $password = sha1($_POST['password']);
 
     //masukan data ke dalam table user
-    $queryUpdate = mysqli_query($config, "UPDATE users SET id_level='$id_level' name='$name', email='$email', password='$password' WHERE id='$id_user'");
+    $queryUpdate = mysqli_query($config, "UPDATE users SET id_level='$id_level', name='$name', email='$email', password='$password' WHERE id='$id_user'");
 
     if ($password == "") {
         // Jika password tidak diubah, update tanpa password
@@ -47,13 +47,21 @@ if (isset($_POST['edit'])) {
 
     //jika berhasil masukan data ke dalam table user
     if ($queryUpdate) {
-        header("location:user.php?ubah=berhasil");
+        header("location?page=user&ubah=berhasil");
     }
 }
 
 $queryLevel = mysqli_query($config, "SELECT * FROM level ORDER BY id DESC");
 $rowLevel = mysqli_fetch_all($queryLevel, MYSQLI_ASSOC);
 
+
+// $query = mysqli_query($config, "SELECT level.level, users.* FROM users
+// LEFT JOIN level ON level.id = users.id_level
+// ORDER BY users.id DESC");
+// $row = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+// $joinRole = mysqli_query($config, "SELECT level.level, users.* FROM users LEFT JOIN level ON level.id=users.id_level WHERE id='$id_user'");
+// $rowJoinRole = mysqli_fetch_assoc($joinRole);
 ?>
 
 
@@ -68,7 +76,8 @@ $rowLevel = mysqli_fetch_all($queryLevel, MYSQLI_ASSOC);
                 <option value="">Pilih Salah Satu</option>
                 <!-- data option diambil dari table level -->
                 <?php foreach ($rowLevel as $level) : ?>
-                    <option value="<?php echo $level['id'] ?>"><?php echo $level['level'] ?></option>
+                    <option <?php echo isset($_GET['edit']) ? ($level['id'] == $rowedit['id_level']) ? 'selected' : '' : '' ?>
+                        value="<?php echo $level['id'] ?>"><?php echo $level['level'] ?></option>
                 <?php endforeach; ?>
                 <!-- endoption -->
             </select>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 $_nama = isset($_SESSION['NAME']) ? $_SESSION['NAME'] : '';
 if (!$_nama) {
     header("Location: index.php?access=failed");

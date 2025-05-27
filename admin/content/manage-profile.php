@@ -59,7 +59,7 @@ $row = mysqli_fetch_assoc($selectProfile);
 
 
 
-<form action="" method="post" v enctype="multipart/form-data">
+<form action="" method="post"  enctype="multipart/form-data">
     <div class="m-2" style="width: 55%">
         <div class="mb-3">
             <label class="form-label" for="">Judul</label>

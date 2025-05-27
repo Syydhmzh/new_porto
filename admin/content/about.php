@@ -33,7 +33,7 @@ if(isset ($_GET['delete'])){
                                                 <td><?= $data['photo'] ?></td>
 
                                                 <td>
-                                                    <a href="tambah-about.php?edit=<?php echo $data['id']?>" class="btn btn-success btn-sm">Edit</a>
+                                                    <a href="?page=tambah-about&edit=<?php echo $data['id']?>" class="btn btn-success btn-sm">Edit</a>
                                                     <a onclick="return confirm('Are You Sure?')" href="user.php"  class="btn btn-warning btn-sm">Delete</a>
                                                 </td>
                                             </tr>

@@ -13,7 +13,7 @@ $row = mysqli_fetch_all($query, MYSQLI_ASSOC);
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $querydelete = mysqli_query($config, "DELETE FROM users WHERE id='$id'");
-    header('location: user.php?hapus=berhasil');
+    header('location:user.php?hapus=berhasil');
 }
 
 ?>
@@ -40,7 +40,7 @@ if (isset($_GET['delete'])) {
                         <td><?= $data['name'] ?></td>
                         <td><?= $data['email'] ?></td>
                         <td>
-                            <a href="tambah-user.php" class="btn btn-success btn-sm">Edit</a>
+                            <a href="?page=tambah-user&edit=<?php echo $data['id']?>" class="btn btn-success btn-sm">Edit</a>
                             <a onclick="return confirm('Are You Sure?')" href="user.php" class="btn btn-warning btn-sm">Delete</a>
                         </td>
                     </tr>
