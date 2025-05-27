@@ -8,7 +8,7 @@ if ($_SESSION['LEVEL'] != 1) {
 
 
 if (isset($_POST['simpan'])) {
-    $name = $_POST['name'];
+    // $name = $_POST['name'];
     $email = $_POST['email'];
     $id_level = $_POST['id_level']; // Default to level 2 if not set
     $password = sha1($_POST['password']);
