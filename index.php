@@ -32,6 +32,11 @@ $queryabout = mysqli_query($config, "SELECT * FROM about ORDER BY id DESC");
 $rowabout= mysqli_fetch_assoc($queryabout);
 $rowprofile = mysqli_fetch_assoc($queryprofile);
 
+$queryskill = mysqli_query($config, "SELECT * FROM skill ORDER BY id DESC");
+$rowskill = mysqli_fetch_all($queryskill, MYSQLI_ASSOC);
+
+$queryservice = mysqli_query($config, "SELECT * FROM service ORDER BY id DESC");
+$rowservice = mysqli_fetch_all($queryservice, MYSQLI_ASSOC);
 
 
 ?>
@@ -253,12 +258,13 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 				</div>
 			</div>
 			<div class="row progress-circle mb-5">
+				<?php foreach($rowskill as $skill) :  ?>
 				<div class="col-lg-4 mb-4">
 					<div class="bg-white rounded-lg shadow p-4">
-						<h2 class="h5 font-weight-bold text-center mb-4">CSS</h2>
+						<h2 class="h5 font-weight-bold text-center mb-4"><?php echo $skill['name'] ?></h2>
 
 						<!-- Progress bar 1 -->
-						<div class="progress mx-auto" data-value='95'>
+						<div class="progress mx-auto" data-value='<?php echo $skill['total'] ?>'>
 							<span class="progress-left">
 								<span class="progress-bar border-primary"></span>
 							</span>
@@ -266,7 +272,7 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<span class="progress-bar border-primary"></span>
 							</span>
 							<div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-								<div class="h2 font-weight-bold">95<sup class="small">%</sup></div>
+								<div class="h2 font-weight-bold"><?php echo $skill['total'] ?><sup class="small">%</sup></div>
 							</div>
 						</div>
 						<!-- END -->
@@ -274,21 +280,21 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 						<!-- Demo info -->
 						<div class="row text-center mt-4">
 							<div class="col-6 border-right">
-								<div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
+								<div class="h4 font-weight-bold mb-0"><?php echo $skill['value1'] ?></div><span class="small text-gray">Last week</span>
 							</div>
 							<div class="col-6">
-								<div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
+								<div class="h4 font-weight-bold mb-0"><?php echo $skill['value2'] ?></div><span class="small text-gray">Last month</span>
 							</div>
 						</div>
 						<!-- END -->
 					</div>
 				</div>
-
-				<div class="col-lg-4 mb-4">
+				<?php endforeach; ?>
+				<!-- <div class="col-lg-4 mb-4">
 					<div class="bg-white rounded-lg shadow p-4">
 						<h2 class="h5 font-weight-bold text-center mb-4">HTML</h2>
 
-						<!-- Progress bar 1 -->
+						
 						<div class="progress mx-auto" data-value='98'>
 							<span class="progress-left">
 								<span class="progress-bar border-primary"></span>
@@ -300,9 +306,8 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h2 font-weight-bold">98<sup class="small">%</sup></div>
 							</div>
 						</div>
-						<!-- END -->
+						
 
-						<!-- Demo info -->
 						<div class="row text-center mt-4">
 							<div class="col-6 border-right">
 								<div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
@@ -311,15 +316,15 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
 							</div>
 						</div>
-						<!-- END -->
+						
 					</div>
-				</div>
+				</div> -->
 
-				<div class="col-lg-4 mb-4">
+				<!-- <div class="col-lg-4 mb-4">
 					<div class="bg-white rounded-lg shadow p-4">
 						<h2 class="h5 font-weight-bold text-center mb-4">jQuery</h2>
 
-						<!-- Progress bar 1 -->
+						
 						<div class="progress mx-auto" data-value='68'>
 							<span class="progress-left">
 								<span class="progress-bar border-primary"></span>
@@ -331,9 +336,9 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h2 font-weight-bold">68<sup class="small">%</sup></div>
 							</div>
 						</div>
-						<!-- END -->
+						
 
-						<!-- Demo info -->
+						
 						<div class="row text-center mt-4">
 							<div class="col-6 border-right">
 								<div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
@@ -342,15 +347,15 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
 							</div>
 						</div>
-						<!-- END -->
+						
 					</div>
-				</div>
+				</div> -->
 
-				<div class="col-lg-4 mb-4">
+				<!-- <div class="col-lg-4 mb-4">
 					<div class="bg-white rounded-lg shadow p-4">
 						<h2 class="h5 font-weight-bold text-center mb-4">Photoshop</h2>
 
-						<!-- Progress bar 1 -->
+						
 						<div class="progress mx-auto" data-value='92'>
 							<span class="progress-left">
 								<span class="progress-bar border-primary"></span>
@@ -362,9 +367,7 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h2 font-weight-bold">92<sup class="small">%</sup></div>
 							</div>
 						</div>
-						<!-- END -->
-
-						<!-- Demo info -->
+						
 						<div class="row text-center mt-4">
 							<div class="col-6 border-right">
 								<div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
@@ -373,15 +376,15 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
 							</div>
 						</div>
-						<!-- END -->
+						
 					</div>
-				</div>
+				</div> -->
 
-				<div class="col-lg-4 mb-4">
+				<!-- <div class="col-lg-4 mb-4">
 					<div class="bg-white rounded-lg shadow p-4">
 						<h2 class="h5 font-weight-bold text-center mb-4">WordPress</h2>
 
-						<!-- Progress bar 1 -->
+						
 						<div class="progress mx-auto" data-value='83'>
 							<span class="progress-left">
 								<span class="progress-bar border-primary"></span>
@@ -393,9 +396,9 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h2 font-weight-bold">83<sup class="small">%</sup></div>
 							</div>
 						</div>
-						<!-- END -->
+						
 
-						<!-- Demo info -->
+					
 						<div class="row text-center mt-4">
 							<div class="col-6 border-right">
 								<div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
@@ -404,15 +407,15 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
 							</div>
 						</div>
-						<!-- END -->
+						
 					</div>
-				</div>
+				</div> -->
 
-				<div class="col-lg-4 mb-4">
+				<!-- <div class="col-lg-4 mb-4">
 					<div class="bg-white rounded-lg shadow p-4">
 						<h2 class="h5 font-weight-bold text-center mb-4">SEO</h2>
 
-						<!-- Progress bar 1 -->
+						
 						<div class="progress mx-auto" data-value='95'>
 							<span class="progress-left">
 								<span class="progress-bar border-primary"></span>
@@ -424,9 +427,9 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h2 font-weight-bold">95<sup class="small">%</sup></div>
 							</div>
 						</div>
-						<!-- END -->
+					
 
-						<!-- Demo info -->
+						
 						<div class="row text-center mt-4">
 							<div class="col-6 border-right">
 								<div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
@@ -435,9 +438,9 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 								<div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
 							</div>
 						</div>
-						<!-- END -->
+						
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>
@@ -453,16 +456,18 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 			</div>
 
 			<div class="row">
+			<?php foreach($rowservice as $service) :  ?>
 				<div class="col-md-6 col-lg-3">
 					<div class="media block-6 services d-block bg-white rounded-lg shadow ftco-animate">
 						<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-3d-design"></span></div>
 						<div class="media-body">
-							<h3 class="heading mb-3">Web Design</h3>
-							<p>A small river named Duden flows by their place and supplies.</p>
+							<h3 class="heading mb-3"><?php echo $service['name'] ?></h3>
+							<p><?php echo $service['description'] ?></p>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-lg-3">
+				<?php endforeach; ?>
+				<!-- <div class="col-md-6 col-lg-3">
 					<div class="media block-6 services d-block bg-white rounded-lg shadow ftco-animate">
 						<div class="icon shadow d-flex align-items-center justify-content-center"><span class="flaticon-app-development"></span></div>
 						<div class="media-body">
@@ -528,7 +533,7 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</section>
 
@@ -559,6 +564,7 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 				</div>
 			</div>
 			<div class="row">
+				
 				<div class="col-md-3">
 					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/work-1.jpg);">
 						<div class="overlay"></div>
@@ -568,7 +574,7 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<!-- <div class="col-md-3">
 					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/work-2.jpg);">
 						<div class="overlay"></div>
 						<div class="text text-center p-4">
@@ -630,7 +636,7 @@ $rowprofile = mysqli_fetch_assoc($queryprofile);
 							<span>Web Design</span>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>
