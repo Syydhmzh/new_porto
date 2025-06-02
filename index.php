@@ -39,6 +39,11 @@ $queryservice = mysqli_query($config, "SELECT * FROM service ORDER BY id DESC");
 $rowservice = mysqli_fetch_all($queryservice, MYSQLI_ASSOC);
 
 
+$queryproject = mysqli_query($config, "SELECT * FROM image ORDER BY id DESC");
+$rowproject = mysqli_fetch_all($queryproject, MYSQLI_ASSOC);
+
+
+
 ?>
 
 
@@ -566,10 +571,10 @@ $rowservice = mysqli_fetch_all($queryservice, MYSQLI_ASSOC);
 			<div class="row">
 				
 				<div class="col-md-3">
-					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/work-1.jpg);">
+					<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(admin/img/<?php echo isset($rowproject['photo']) ? $rowproject['photo'] : '' ?>)">
 						<div class="overlay"></div>
 						<div class="text text-center p-4">
-							<h3><a href="#">Branding &amp; Illustration Design</a></h3>
+							<h3><a href="">Branding &amp; Illustration Design</a></h3>
 							<span>Web Design</span>
 						</div>
 					</div>

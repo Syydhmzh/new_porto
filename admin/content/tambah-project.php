@@ -13,15 +13,15 @@ if (isset($_POST['simpan'])) {
 
     // $insertQ = mysqli_query($config, "INSERT INTO profile  (profile_name, description) VALUES ($profile_name', '$description')");
 
-    $queryprofile = mysqli_query($config, "SELECT * FROM image ORDER BY id DESC");
-    if (mysqli_num_rows($queryprofile) > 0) {
-        $rowprofile = mysqli_fetch_assoc($queryprofile);
-        $id = $rowprofile['id'];
+    $queryproject = mysqli_query($config, "SELECT * FROM image ORDER BY id DESC");
+    if (mysqli_num_rows($queryproject) > 0) {
+        $rowproject = mysqli_fetch_assoc($queryproject);
+        $id = $rowproject['id'];
 
 
         //jika user upload gambar
         if (!empty($photo)) {
-            unlink("img/" . $rowprofile['photo']);
+            unlink("img/" . $rowproject['photo']);
             move_uploaded_file($tmp_name, $filepath);
 
             $update = mysqli_query($config, "UPDATE image SET name='$name', title='$title',  photo='$filename' WHERE id = '$id'");
